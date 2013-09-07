@@ -5,9 +5,9 @@ class Agent:
         self.side = side
 
     def makeMove(self, board):
-        possibleMoves = self.openSpots(board)
+        options = self.openSpots(board)
 
-        return choice(possibleMoves)
+        return choice(options)
 
     def openSpots(self, board):
         result = []
@@ -17,3 +17,15 @@ class Agent:
                     result.append((row, col))
 
         return result
+
+    def winningSpots(self, board):
+        return []
+
+    def blockLosingSpots(self, board):
+        return []
+
+    def oppositeCornerSpots(self, board):
+        return []
+
+    def cornerSpots(self, board):
+        return []

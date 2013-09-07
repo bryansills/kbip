@@ -1,5 +1,20 @@
 from agent import Agent
+from random import choice
 
 class Dumb(Agent):
     def makeMove(self, board):
-        return ('cool', 'cool')
+        options = self.winningSpots(board)
+        if len(options) != 0:
+            return choice(options)
+
+        options = self.blockLosingSpots(board)
+        if len(options) != 0:
+            return choice(options)
+
+        options = self.cornerSpots(board)
+        if len(options) != 0:
+            return choice(options)
+
+        options = self.openSpots(board)
+        if len(options) != 0:
+            return choice(options)
