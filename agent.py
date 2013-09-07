@@ -4,11 +4,6 @@ class Agent:
     def __init__(self, side):
         self.side = side
 
-    def makeMove(self, board):
-        options = self.openSpots(board)
-
-        return choice(options)
-
     def openSpots(self, board):
         result = []
         for row in range(3):
@@ -25,7 +20,36 @@ class Agent:
         return []
 
     def oppositeCornerSpots(self, board):
-        return []
+        result = []
+
+        if board[2][2].state == self.side and board[0][0].state == '-':
+            result.append((0,0))
+
+        if board[0][2].state == self.side and board[2][0].state == '-':
+            result.append((2,0))
+
+        if board[2][0].state == self.side and board[0][2].state == '-':
+            result.append((0,2))
+
+        if board[0][0].state == self.side and board[2][2].state == '-':
+            result.append((2,2))
+
+        return result
+
 
     def cornerSpots(self, board):
-        return []
+        result = []
+
+        if board[0][0].state == '-':
+            result.append((0,0))
+
+        if board[2][0].state == '-':
+            result.append((2,0))
+
+        if board[0][2].state == '-':
+            result.append((0,2))
+
+        if board[2][2].state == '-':
+            result.append((2,2))
+
+        return result
