@@ -49,7 +49,6 @@ class Agent:
         if count >= 2:
             for ind in range(3):
                 if board[ind][ind].state == '-':
-                    print('gonna win')
                     result.append((ind, ind))
 
 
@@ -61,7 +60,6 @@ class Agent:
         if count >= 2:
             for ind in range(3):
                 if board[2 - ind][ind].state == '-':
-                    print('will win')
                     result.append((2 - ind, ind))
 
         return result
