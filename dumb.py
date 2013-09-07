@@ -7,14 +7,6 @@ class Dumb(Agent):
         if len(options) != 0:
             return choice(options)
 
-        options = self.blockLosingSpots(board)
-        if len(options) != 0:
-            return choice(options)
-
-        options = self.cornerSpots(board)
-        if len(options) != 0:
-            return choice(options)
-
         options = self.openSpots(board)
         if len(options) != 0:
             return choice(options)
