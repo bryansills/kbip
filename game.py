@@ -1,4 +1,6 @@
 from tile import *
+from smart import *
+from dumb import *
 
 class Game:    
     def __init__(self, agent1, agent2, board=[[Tile() for j in range(3)] for i in range(3)]):
@@ -8,33 +10,39 @@ class Game:
 
     def run(self):
         agentOneTurn = True
+        result = 'Nope'
 
-        while result == 'Nope' and len(openSpots()) != 0:
-            if playerOneTurn:
-                print('agentonemove')
+        while result == 'Nope' and len(self.openSpots()) != 0:
+            if agentOneTurn:
+                move = self.agent1.makeMove(self.board)
+                print(move)
+                self.board[move[0]][move[1]].state = 'X'
                 agentOneTurn = False
             else:
-                print('agenttwomove')
+                move = self.agent2.makeMove(self.board)
+                print(move)
+                self.board[move[0]][move[1]].state = 'O'
                 agentOneTurn = True
 
-            result = checkForWin()
+            self.printBoard()
+            result = self.checkForWin()
 
         if result == 'X':
             return 'X'
-        else if result == 'O':
+        elif result == 'O':
             return 'O'
         else:
-            print('Something fucked up...')
+            return 'Draw'
 
 
     def openSpots(self):
-        openSpots = []
+        result = []
         for row in range(3):
             for col in range(3):
                 if self.board[row][col].state == '-':
-                    openSpots.append((row, col))
+                    result.append((row, col))
 
-        return openSpots
+        return result
 
     def checkForWin(self):
         # check horizontal x
@@ -74,10 +82,11 @@ class Game:
         print('-----')
         print(self.board[2][0].state + '|' + self.board[2][1].state + '|' + self.board[2][2].state)
 
-y = Tile('X')
-brd = [[Tile('X'),Tile('-'),Tile('-')],[Tile('O'),Tile('X'),Tile('O')],[Tile('X'),Tile('-'),Tile('X')]]
-x = Game('this', 'that', brd)
+# y = Tile('X')
+# brd = [[Tile('X'),Tile('-'),Tile('-')],[Tile('O'),Tile('X'),Tile('O')],[Tile('X'),Tile('-'),Tile('X')]]
+# x = Game('this', 'that', brd)
 
-print(x.openSpots())
-
+x = Game(Smart('X'), Dumb('O'))
 x.printBoard()
+result = x.run()
+print('Result: ' + result)
