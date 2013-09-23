@@ -7,7 +7,7 @@ class Game:
         self.agent1 = agent1
         self.agent2 = agent2
         if board is None:
-            self.board = [[Tile() for j in range(3)] for i in range(3)]
+            self.board = [["-" for j in range(3)] for i in range(3)]
         else:
             self.board = board
 
@@ -19,12 +19,12 @@ class Game:
             if agentOneTurn:
                 move = self.agent1.makeMove(self.board)
                 print(move)
-                self.board[move[0]][move[1]].state = 'X'
+                self.board[move[0]][move[1]] = 'X'
                 agentOneTurn = False
             else:
                 move = self.agent2.makeMove(self.board)
                 print(move)
-                self.board[move[0]][move[1]].state = 'O'
+                self.board[move[0]][move[1]] = 'O'
                 agentOneTurn = True
 
             self.printBoard()
@@ -42,7 +42,7 @@ class Game:
         result = []
         for row in range(3):
             for col in range(3):
-                if self.board[row][col].state == '-':
+                if self.board[row][col] == '-':
                     result.append((row, col))
 
         return result
@@ -50,40 +50,40 @@ class Game:
     def checkForWin(self):
         # check horizontal x
         for row in range(3):
-            if 'X' == self.board[row][0].state == self.board[row][1].state == self.board[row][2].state:
+            if 'X' == self.board[row][0] == self.board[row][1] == self.board[row][2]:
                 return 'X'
         # check vertical x
         for col in range(3):
-            if 'X' == self.board[0][col].state == self.board[1][col].state == self.board[2][col].state:
+            if 'X' == self.board[0][col] == self.board[1][col] == self.board[2][col]:
                 return 'X'
         # check diagonal x
-        if 'X' == self.board[0][0].state == self.board[1][1].state == self.board[2][2].state:
+        if 'X' == self.board[0][0] == self.board[1][1] == self.board[2][2]:
             return 'X'
-        if 'X' == self.board[2][0].state == self.board[1][1].state == self.board[0][2].state:
+        if 'X' == self.board[2][0] == self.board[1][1] == self.board[0][2]:
             return 'X'
 
         # check horizontal o
         for row in range(3):
-            if 'O' == self.board[row][0].state == self.board[row][1].state == self.board[row][2].state:
+            if 'O' == self.board[row][0] == self.board[row][1] == self.board[row][2]:
                 return 'O'
         # check vertical o
         for col in range(3):
-            if 'O' == self.board[0][col].state == self.board[1][col].state == self.board[2][col].state:
+            if 'O' == self.board[0][col] == self.board[1][col] == self.board[2][col]:
                 return 'O'
         # check diagonal o
-        if 'O' == self.board[0][0].state == self.board[1][1].state == self.board[2][2].state:
+        if 'O' == self.board[0][0] == self.board[1][1] == self.board[2][2]:
             return 'O'
-        if 'O' == self.board[2][0].state == self.board[1][1].state == self.board[0][2].state:
+        if 'O' == self.board[2][0] == self.board[1][1] == self.board[0][2]:
             return 'O'
 
         return 'Nope'
 
     def printBoard(self):
-        print(self.board[0][0].state + '|' + self.board[0][1].state + '|' + self.board[0][2].state)
+        print(self.board[0][0] + '|' + self.board[0][1] + '|' + self.board[0][2])
         print('-----')
-        print(self.board[1][0].state + '|' + self.board[1][1].state + '|' + self.board[1][2].state)
+        print(self.board[1][0] + '|' + self.board[1][1] + '|' + self.board[1][2])
         print('-----')
-        print(self.board[2][0].state + '|' + self.board[2][1].state + '|' + self.board[2][2].state)
+        print(self.board[2][0] + '|' + self.board[2][1] + '|' + self.board[2][2])
         print('')
 
 countX1 = 0

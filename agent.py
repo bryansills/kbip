@@ -8,7 +8,7 @@ class Agent:
         result = []
         for row in range(3):
             for col in range(3):
-                if board[row][col].state == '-':
+                if board[row][col] == '-':
                     result.append((row, col))
 
         return result
@@ -20,46 +20,46 @@ class Agent:
         for row in range(3):
             count = 0
             for ind in range(3):
-                if board[row][ind].state == self.side:
+                if board[row][ind] == self.side:
                     count = count + 1
 
             if count >= 2:
                 for ind in range(3):
-                    if board[row][ind].state == '-':
+                    if board[row][ind] == '-':
                         result.append((row, ind))
 
         # check vertical x
         for col in range(3):
             count = 0
             for ind in range(3):
-                if board[ind][col].state == self.side:
+                if board[ind][col] == self.side:
                     count = count + 1
 
             if count >= 2:
                 for ind in range(3):
-                    if board[ind][col].state == '-':
+                    if board[ind][col] == '-':
                         result.append((ind, col))
 
         # check diagonal x
         count = 0
         for ind in range(3):
-            if board[ind][ind].state == self.side:
+            if board[ind][ind] == self.side:
                 count = count + 1
 
         if count >= 2:
             for ind in range(3):
-                if board[ind][ind].state == '-':
+                if board[ind][ind] == '-':
                     result.append((ind, ind))
 
 
         count = 0
         for ind in range(3):
-            if board[2 - ind][ind].state == self.side:
+            if board[2 - ind][ind] == self.side:
                 count = count + 1
 
         if count >= 2:
             for ind in range(3):
-                if board[2 - ind][ind].state == '-':
+                if board[2 - ind][ind] == '-':
                     result.append((2 - ind, ind))
 
         return result
@@ -72,46 +72,46 @@ class Agent:
         for row in range(3):
             count = 0
             for ind in range(3):
-                if board[row][ind].state != self.side and board[row][ind].state != '-':
+                if board[row][ind] != self.side and board[row][ind] != '-':
                     count = count + 1
 
             if count >= 2:
                 for ind in range(3):
-                    if board[row][ind].state == '-':
+                    if board[row][ind] == '-':
                         result.append((row, ind))
 
         # check vertical x
         for col in range(3):
             count = 0
             for ind in range(3):
-                if board[ind][col].state != self.side and board[ind][col].state != '-':
+                if board[ind][col] != self.side and board[ind][col] != '-':
                     count = count + 1
 
             if count >= 2:
                 for ind in range(3):
-                    if board[ind][col].state == '-':
+                    if board[ind][col] == '-':
                         result.append((ind, col))
 
         # check diagonal x
         count = 0
         for ind in range(3):
-            if board[ind][ind].state != self.side and board[ind][ind].state != '-':
+            if board[ind][ind] != self.side and board[ind][ind] != '-':
                 count = count + 1
 
         if count >= 2:
             for ind in range(3):
-                if board[ind][ind].state == '-':
+                if board[ind][ind] == '-':
                     result.append((ind, ind))
 
 
         count = 0
         for ind in range(3):
-            if board[2 - ind][ind].state != self.side and board[2 - ind][ind].state != '-':
+            if board[2 - ind][ind] != self.side and board[2 - ind][ind] != '-':
                 count = count + 1
 
         if count >= 2:
             for ind in range(3):
-                if board[2 - ind][ind].state == '-':
+                if board[2 - ind][ind] == '-':
                     result.append((2 - ind, ind))
 
         return result
@@ -119,16 +119,16 @@ class Agent:
     def oppositeCornerSpots(self, board):
         result = []
 
-        if board[2][2].state == self.side and board[0][0].state == '-':
+        if board[2][2] == self.side and board[0][0] == '-':
             result.append((0,0))
 
-        if board[0][2].state == self.side and board[2][0].state == '-':
+        if board[0][2] == self.side and board[2][0] == '-':
             result.append((2,0))
 
-        if board[2][0].state == self.side and board[0][2].state == '-':
+        if board[2][0] == self.side and board[0][2] == '-':
             result.append((0,2))
 
-        if board[0][0].state == self.side and board[2][2].state == '-':
+        if board[0][0] == self.side and board[2][2] == '-':
             result.append((2,2))
 
         return result
@@ -137,16 +137,16 @@ class Agent:
     def cornerSpots(self, board):
         result = []
 
-        if board[0][0].state == '-':
+        if board[0][0] == '-':
             result.append((0,0))
 
-        if board[2][0].state == '-':
+        if board[2][0] == '-':
             result.append((2,0))
 
-        if board[0][2].state == '-':
+        if board[0][2] == '-':
             result.append((0,2))
 
-        if board[2][2].state == '-':
+        if board[2][2] == '-':
             result.append((2,2))
 
         return result
