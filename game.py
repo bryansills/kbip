@@ -1,4 +1,3 @@
-from tile import *
 from smart import *
 from dumb import *
 
@@ -17,13 +16,15 @@ class Game:
 
         while result == 'Nope' and len(self.openSpots()) != 0:
             if agentOneTurn:
-                move = self.agent1.makeMove(self.board)
+                move, reason = self.agent1.makeMove(self.board)
                 print(move)
+                print("Agent 1 Reason: " + reason)
                 self.board[move[0]][move[1]] = 'X'
                 agentOneTurn = False
             else:
-                move = self.agent2.makeMove(self.board)
+                move, reason = self.agent2.makeMove(self.board)
                 print(move)
+                print("Agent 2 Reason: " + reason)
                 self.board[move[0]][move[1]] = 'O'
                 agentOneTurn = True
 
@@ -86,21 +87,6 @@ class Game:
         print(self.board[2][0] + '|' + self.board[2][1] + '|' + self.board[2][2])
         print('')
 
-countX1 = 0
-countO1 = 0
-countDraw1 = 0
-for ind in range(1000):
-    x = Game(Smart('X'), Smart('O'))
-    x.printBoard()
-    result = x.run()
-
-    if result == 'X':
-        countX1 = countX1 + 1
-    elif result == 'O':
-        countO1 = countO1 + 1
-    elif result == 'Draw':
-        countDraw1 = countDraw1 + 1
-
 countX2 = 0
 countO2 = 0
 countDraw2 = 0
@@ -131,22 +117,5 @@ for ind in range(1000):
     elif result == 'Draw':
         countDraw3 = countDraw3 + 1
 
-countX4 = 0
-countO4 = 0
-countDraw4 = 0
-for ind in range(1000):
-    x = Game(Dumb('X'), Dumb('O'))
-    x.printBoard()
-    result = x.run()
-
-    if result == 'X':
-        countX4 = countX4 + 1
-    elif result == 'O':
-        countO4 = countO4 + 1
-    elif result == 'Draw':
-        countDraw4 = countDraw4 + 1
-
-print('Experiment 1: Smart X - ' + str(countX1) + ', Smart O - ' + str(countO1) + ', Draw - ' + str(countDraw1))
-print('Experiment 2: Smart X - ' + str(countX2) + ', Dumb O - ' + str(countO2) + ', Draw - ' + str(countDraw2))
-print('Experiment 3: Dumb X - ' + str(countX3) + ', Smart O - ' + str(countO3) + ', Draw - ' + str(countDraw3))
-print('Experiment 4: Dumb X - ' + str(countX4) + ', Dumb O - ' + str(countO4) + ', Draw - ' + str(countDraw4))
+print('Experiment 1: Smart X - ' + str(countX2) + ', Dumb O - ' + str(countO2) + ', Draw - ' + str(countDraw2))
+print('Experiment 2: Dumb X - ' + str(countX3) + ', Smart O - ' + str(countO3) + ', Draw - ' + str(countDraw3))

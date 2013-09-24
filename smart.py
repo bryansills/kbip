@@ -1,24 +1,25 @@
+from domknow import *
 from agent import Agent
 from random import choice
 
 class Smart(Agent):
     def makeMove(self, board):
-        options = self.winningSpots(board)
+        options = winningSpots(board, self.side)
         if len(options) != 0:
-            return choice(options)
+            return (choice(options), "This spot wins the game.")
 
-        options = self.blockLosingSpots(board)
+        options = blockLosingSpots(board, self.side)
         if len(options) != 0:
-            return choice(options)
+            return (choice(options), "This spot blocks the opponent.")
 
-        options = self.oppositeCornerSpots(board)
+        options = oppositeCornerSpots(board, self.side)
         if len(options) != 0:
-            return choice(options)
+            return (choice(options), "This spot is opposite of a corner you already claimed.")
 
-        options = self.cornerSpots(board)
+        options = cornerSpots(board, self.side)
         if len(options) != 0:
-            return choice(options)
+            return (choice(options), "This spot is a corner spot.")
 
-        options = self.openSpots(board)
+        options = openSpots(board, self.side)
         if len(options) != 0:
-            return choice(options)
+            return (choice(options), "This spot is available.")
