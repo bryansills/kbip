@@ -17,14 +17,12 @@ class Game:
         while result == 'Nope' and len(self.openSpots()) != 0:
             if agentOneTurn:
                 move, reason = self.agent1.makeMove(self.board)
-                print(move)
-                print("Agent 1 Reason: " + reason)
+                print("Agent 1 Reason: " + reason + ": " + str(move))
                 self.board[move[0]][move[1]] = 'X'
                 agentOneTurn = False
             else:
                 move, reason = self.agent2.makeMove(self.board)
-                print(move)
-                print("Agent 2 Reason: " + reason)
+                print("Agent 2 Reason: " + reason + ": " + str(move))
                 self.board[move[0]][move[1]] = 'O'
                 agentOneTurn = True
 
